@@ -1,0 +1,63 @@
+{% extends "_template.twig" %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ rootURL }}/styles/button.css" />
+<link rel="stylesheet" href="{{ rootURL }}/styles/table.css" />
+<link rel="stylesheet" href="{{ rootURL }}/styles/listExtinguishers.css" />
+{% endblock %}
+
+{% block content %}
+<main>
+  <h1>Extintores</h1>
+
+  <div class="actions-block">
+    <a class="button button-green" href={{ url_for("new-extinguisher") }}>
+      Cadastro
+    </a>
+
+    <button class="button-blue" type="button">Filtro</button>
+  </div>
+
+  <div class="list-table-block">
+    <div class="title-columns">
+      <span>ID</span>
+      <span>Local</span>
+      <span>Vencimento</span>
+    </div>
+
+    <div class="table-block">
+      <table>
+        <tbody>
+          {% for extinguisher in extinguishers %}
+          <tr>
+            <td>
+              <a href={{ url_for("view-extinguisher", { "id" : extinguisher.id }) }}>
+                {{ extinguisher.id }}
+              </a>
+            </td>
+            <td>
+              <a href={{ url_for("view-extinguisher", { "id" : extinguisher.id }) }}>
+                {{ extinguisher.location.description }}
+              </a>
+            </td>
+            <td>
+              <a href={{ url_for("view-extinguisher", { "id" : extinguisher.id }) }}>
+                {{ extinguisher.validate|date("d/m/Y") }}
+              </a>
+            </td>
+          </tr>
+          {% else %}
+          <tr colspan="3">
+            <td>Nenhum extintor encontrado</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script src='{{ rootURL }}/js/table.js'></script>
+{% endblock %}

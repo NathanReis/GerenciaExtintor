@@ -1,0 +1,60 @@
+div.list-table-block {
+    margin: auto;
+}
+
+div.list-table-block,
+div.list-table-block div.table-block,
+div.list-table-block div.table-block > table {
+    width: 100%;
+}
+
+div.list-table-block div.title-columns {
+    display: flex;
+    flex-direction: row;
+}
+
+div.list-table-block div.title-columns span {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+div.list-table-block div.table-block {
+    max-height: 65vh;
+}
+
+div.list-table-block div.table-block > table {
+    border-collapse: collapse;
+}
+
+div.list-table-block div.table-block > table > tbody > tr:hover {
+    background-color: #00FF00;
+
+    cursor: pointer;
+}
+
+div.list-table-block div.table-block > table > tbody > tr > td,
+div.list-table-block div.table-block > table > tbody > tr > td > a {
+    font-size: 1.2rem;
+}
+
+div.list-table-block div.table-block > table > tbody > tr > td > a {
+    display: inline-block;
+
+    width: 100%;
+
+    color: inherit;
+}
+
+div.list-table-block div.title-columns,
+div.list-table-block div.table-block {
+    overflow: auto;
+}
+
+div.list-table-block div.title-columns > span,
+div.list-table-block div.table-block > table > tbody > tr > td {
+    text-align: center;
+
+    line-height: 2rem;
+
+    padding: 0 0.5rem;
+}

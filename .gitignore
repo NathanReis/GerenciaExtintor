@@ -1,0 +1,10 @@
+api/src/database/*.sqlite
+!api/src/database/cleandatabase.sqlite
+api/vendor
+api/.env
+
+docs
+
+web/temp
+web/vendor
+web/.env

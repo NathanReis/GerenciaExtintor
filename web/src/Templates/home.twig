@@ -1,0 +1,25 @@
+{% extends "_template.twig" %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ rootURL }}/styles/home.css" />
+{% endblock %}
+
+{% block content %}
+<main>
+  <div id="location-block" class="alert-block">
+    <img src="{{ rootURL }}/assets/CheckCircle.svg" alt="Localizações ok" />
+
+    <div class="alert-message">
+      <span>Lorem ipsum dolor sit amet</span>
+    </div>
+  </div>
+
+  <div id="fire-extinguisher-block" class="alert-block">
+    <img src="{{ rootURL }}/assets/WarningAmber.svg" alt="Atenção aos extintores" />
+
+    <div class="alert-message">
+      <span>Lorem ipsum dolor sit amet</span>
+    </div>
+  </div>
+</main>
+{% endblock %}

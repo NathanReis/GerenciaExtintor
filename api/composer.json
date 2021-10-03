@@ -1,0 +1,24 @@
+{
+  "name": "nathanreis/gerencia-extintor-api",
+  "description": "API do sistema para gestao de extintores desenvolvido para disciplina de estagio",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Nathan Reis",
+      "email": "nathansilvareis@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  },
+  "require": {
+    "slim/slim": "4.*",
+    "slim/psr7": "1.*",
+    "vlucas/phpdotenv": "5.3.*"
+  }
+}

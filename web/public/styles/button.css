@@ -1,0 +1,43 @@
+button,
+.button {
+    padding: 0.5rem;
+
+    line-height: 1.5rem;
+
+    font-size: 1rem;
+    font-weight: 500;
+
+    border: 0 solid black;
+    border-radius: 1.25rem;
+}
+
+button:hover,
+.button:hover {
+    box-shadow: 0 0 0.3rem black;
+
+    cursor: default;
+}
+
+button.button-green,
+.button.button-green {
+    background-color: green;
+    color: white;
+}
+
+button.button-blue,
+.button.button-blue {
+    background-color: blue;
+    color: white;
+}
+
+button.button-red,
+.button.button-red {
+    background-color: red;
+    color: white;
+}
+
+button.button-yellow,
+.button.button-yellow {
+    background-color: yellow;
+    color: black;
+}

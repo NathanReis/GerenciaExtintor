@@ -1,0 +1,63 @@
+{% extends "_template.twig" %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ rootURL }}/styles/button.css" />
+<link rel="stylesheet" href="{{ rootURL }}/styles/table.css" />
+<link rel="stylesheet" href="{{ rootURL }}/styles/listLocations.css" />
+{% endblock %}
+
+{% block content %}
+<main>
+  <h1>Locais</h1>
+
+  <div class="actions-block">
+    <a class="button button-green" href={{ url_for("new-location") }}>
+      Cadastro
+    </a>
+
+    <button class="button-blue" type="button">Filtro</button>
+  </div>
+
+  <div class="list-table-block">
+    <div class="title-columns">
+      <span>ID</span>
+      <span>Descrição</span>
+      <span>Qtd. extintores</span>
+    </div>
+
+    <div class="table-block">
+      <table>
+        <tbody>
+          {% for location in locations %}
+          <tr>
+            <td>
+              <a href={{ url_for("view-location", { "id" : location.id }) }}>
+                {{ location.id }}
+              </a>
+            </td>
+            <td>
+              <a href={{ url_for("view-location", { "id" : location.id }) }}>
+                {{ location.description }}
+              </a>
+            </td>
+            <td>
+              <a href={{ url_for("view-location", { "id" : location.id }) }}>
+                {{ location.extinguishers|length }}
+              </a>
+            </td>
+          </tr>
+          {% else %}
+          <tr colspan="3">
+            <td>Nenhum local encontrado</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script src='{{ rootURL }}/js/table.js'></script>
+{% endblock %}

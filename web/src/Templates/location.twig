@@ -1,0 +1,59 @@
+{% extends "_template.twig" %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ rootURL }}/styles/button.css" />
+<link rel="stylesheet" href="{{ rootURL }}/styles/form.css" />
+<link rel="stylesheet" href="{{ rootURL }}/styles/formLocation.css" />
+{% endblock %}
+
+{% block content %}
+<main>
+  <h1>Local</h1>
+
+  <form action={{ url_for("save-location") }} method="POST">
+    <input type="text" name="isUpdate" value="{{ isUpdate }}" hidden />
+
+    {% if location and isUpdate == "yes" %}
+    <div class="input-block">
+      <label for="id">ID</label>
+
+      <input id="id" name="id" type="number" value="{{ location.id }}" readonly />
+
+      <ul class="input-errors">
+        {% for error in idErrors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
+    <div class="input-block">
+      <label for="description">Descrição</label>
+
+      {% if location and location.description %}
+      <input id="description" name="description" type="text" value="{{ location.description }}" />
+      {% else %}
+      <input id="description" name="description" type="text" />
+      {% endif %}
+
+      <ul class="input-errors">
+        {% for error in descriptionErrors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="actions-block">
+      {% if location and isUpdate == "yes" %}
+      <button class="button-yellow" type="submit">Atualizar</button>
+
+      <a class="button button-red" href={{ url_for("delete-location", { "id" : location.id }) }}>
+        Excluir
+      </a>
+      {% else %}
+      <button class="button-green" type="submit">Cadastrar</button>
+      {% endif %}
+    </div>
+  </form>
+</main>
+{% endblock %}

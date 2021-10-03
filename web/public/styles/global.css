@@ -1,0 +1,44 @@
+:root {
+    font-size: 16px;
+}
+
+* {
+    box-sizing: border-box;
+
+    margin: 0;
+    padding: 0;
+}
+
+*,
+input,
+textarea {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+main {
+    height: 90vh;
+    width: 95vw;
+
+    margin: 5vh 2.5vw;
+    padding: 2.5vw;
+
+    box-shadow:
+        0.5rem 0 1rem black,
+        -0.5rem 0 1rem black;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 450px) {
+    :root {
+        font-size: 12px;
+    }
+}

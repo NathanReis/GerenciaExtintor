@@ -1,0 +1,26 @@
+{
+  "name": "nathanreis/gerencia-extintor-frontend",
+  "description": "Front-end do sistema para gestao de extintores desenvolvido para disciplina de estagio",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Nathan Reis",
+      "email": "nathansilvareis@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  },
+  "require": {
+    "slim/slim": "4.*",
+    "slim/psr7": "1.*",
+    "slim/twig-view": "3.*",
+    "guzzlehttp/guzzle": "7.3.*",
+    "vlucas/phpdotenv": "5.3.*"
+  }
+}
