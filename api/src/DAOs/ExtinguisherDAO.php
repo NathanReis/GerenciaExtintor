@@ -65,7 +65,7 @@ class ExtinguisherDAO extends DAO
             $params[":value{$i}"] = $values[$i];
         }
 
-        $sql .= ";";
+        $sql .= " ORDER BY validate ASC;";
 
         $stmt = DBConnection::getInstance()->prepare($sql);
         $stmt->execute($params);
@@ -92,7 +92,8 @@ class ExtinguisherDAO extends DAO
         $sql .=     "l.description AS descriptionLocation ";
         $sql .= "FROM {$this->table} AS fe ";
         $sql .=     "INNER JOIN tbLocations AS l ";
-        $sql .=         "ON l.id = fe.idLocation;";
+        $sql .=         "ON l.id = fe.idLocation ";
+        $sql .= "ORDER BY validate ASC;";
 
         $extinguishers = DBConnection::getInstance()
             ->query($sql)

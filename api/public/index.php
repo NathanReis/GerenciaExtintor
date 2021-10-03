@@ -35,7 +35,6 @@ $customErrorHandler = function (
             ->createResponse()
             ->withHeader("Access-Control-Allow-Origin", "*")
             ->withHeader("Access-Control-Allow-Methods", "DELETE, GET, POST, PUT"),
-        // data: "Unexpected error",
         data: "Message: {$exception}",
         statusCode: 500
     );
