@@ -16,7 +16,7 @@ class ExtinguisherController
     {
         $extinguisher = null;
 
-        $responseApi = HttpRequestHelper::get("/extinguishers");
+        $responseApi = HttpRequestHelper::get("/extinguishers/{$id}");
 
         if ($responseApi?->success) {
             $extinguisher = $responseApi->data;
