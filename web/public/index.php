@@ -9,6 +9,7 @@ use Slim\Factory\AppFactory;
 use Slim\Routing\RouteCollectorProxy;
 use Slim\Views\Twig;
 use Slim\Views\TwigMiddleware;
+use Twig\TwigTest;
 
 require_once implode(
     DIRECTORY_SEPARATOR,
@@ -35,6 +36,15 @@ $twig = Twig::create(
         "strict_variables" => true
     ]
 );
+
+$twig
+    ->getEnvironment()
+    ->addTest(new TwigTest("lessThanToday", function (string $date) {
+        $dateObj = new \DateTime($date);
+        $today = new \DateTime("today");
+
+        return $dateObj <= $today;
+    }));
 
 $app->add(TwigMiddleware::create($app, $twig));
 

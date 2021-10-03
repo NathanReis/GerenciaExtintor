@@ -3,6 +3,7 @@
 {% block styles %}
 <link rel="stylesheet" href="{{ rootURL }}/styles/button.css" />
 <link rel="stylesheet" href="{{ rootURL }}/styles/table.css" />
+<link rel="stylesheet" href="{{ rootURL }}/styles/text.css" />
 <link rel="stylesheet" href="{{ rootURL }}/styles/listExtinguishers.css" />
 {% endblock %}
 
@@ -41,9 +42,15 @@
               </a>
             </td>
             <td>
+              {% if extinguisher.validate is lessThanToday %}
+              <a class="text-danger" href={{ url_for("view-extinguisher", { "id" : extinguisher.id }) }}>
+                {{ extinguisher.validate|date("d/m/Y") }}
+              </a>
+              {% else %}
               <a href={{ url_for("view-extinguisher", { "id" : extinguisher.id }) }}>
                 {{ extinguisher.validate|date("d/m/Y") }}
               </a>
+              {% endif %}
             </td>
           </tr>
           {% else %}
