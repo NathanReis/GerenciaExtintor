@@ -27,7 +27,7 @@ div.list-table-block div.table-block > table {
 }
 
 div.list-table-block div.table-block > table > tbody > tr:hover {
-    background-color: #00FF00;
+    background-color: #AAFFAA;
 
     cursor: pointer;
 }
