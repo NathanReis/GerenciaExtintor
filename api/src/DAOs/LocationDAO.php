@@ -83,6 +83,24 @@ class LocationDAO extends DAO
     }
 
     /**
+     * Busca todos pontos de atenção da tabela específica.
+     *
+     * @return object Os dados dos pontos de atenção.
+     */
+    public function listAttentionPoints(): object
+    {
+        $sql  = "SELECT COUNt(*) AS amountWithoutExtinguisher ";
+        $sql .= "FROM {$this->table} AS l ";
+        $sql .=     "LEFT JOIN tbExtinguishers AS e ";
+        $sql .=         "ON e.idLocation = l.id ";
+        $sql .= "WHERE e.id IS NULL;";
+
+        return DBConnection::getInstance()
+            ->query($sql)
+            ->fetch();
+    }
+
+    /**
      * Atualiza um registro no banco de dados para o local recebido.
      *
      * @param App\Models\Location $location Local para atualizar o registro.

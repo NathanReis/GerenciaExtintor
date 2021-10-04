@@ -7,19 +7,41 @@
 {% block content %}
 <main>
   <div id="location-block" class="alert-block">
-    <img src="{{ rootURL }}/assets/CheckCircle.svg" alt="Localizações ok" />
+    {% if attentionPointsLocation.amountWithoutExtinguisher == 0 %}
+    <img src="{{ rootURL }}/assets/CheckCircle.svg" alt="Locais ok" />
 
     <div class="alert-message">
-      <span>Lorem ipsum dolor sit amet</span>
+      <span>Não há nenhum ponto de atenção relacionado à locais</span>
     </div>
+    {% else %}
+    <img src="{{ rootURL }}/assets/WarningAmber.svg" alt="Atenção aos locais" />
+
+    <div class="alert-message">
+      <span>
+        Você possuí {{ attentionPointsLocation.amountWithoutExtinguisher }}
+        local(is) com nenhum extintor, aloque algum lá e fique seguro.
+      </span>
+    </div>
+    {% endif %}
   </div>
 
   <div id="fire-extinguisher-block" class="alert-block">
+    {% if attentionPointsExtinguisher.amountExpired == 0 %}
+    <img src="{{ rootURL }}/assets/CheckCircle.svg" alt="Extintores ok" />
+
+    <div class="alert-message">
+      <span>Não há nenhum ponto de atenção relacionado à extintores</span>
+    </div>
+    {% else %}
     <img src="{{ rootURL }}/assets/WarningAmber.svg" alt="Atenção aos extintores" />
 
     <div class="alert-message">
-      <span>Lorem ipsum dolor sit amet</span>
+      <span>
+        Você possuí {{ attentionPointsExtinguisher.amountExpired }} extintor(es)
+        com a validade vencida, tome alguma providência sobre isso.
+      </span>
     </div>
+    {% endif %}
   </div>
 </main>
 {% endblock %}

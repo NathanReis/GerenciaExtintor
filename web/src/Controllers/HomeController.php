@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Helpers\HttpRequestHelper;
 use Psr\Http\Message\ResponseInterface as IResponse;
 use Psr\Http\Message\ServerRequestInterface as IRequest;
 use Slim\Views\Twig;
@@ -16,7 +17,14 @@ class HomeController
      */
     public function show(IRequest $request, IResponse $response): IResponse
     {
+        $responseApiExtinguisher = HttpRequestHelper::get("/attention-points/extinguisher");
+        $responseApiLocation = HttpRequestHelper::get("/attention-points/location");
+
         return Twig::fromRequest($request)
-            ->render($response, "home.twig", ["rootURL" => getenv("ROOT_URL")]);
+            ->render($response, "home.twig", [
+                "attentionPointsExtinguisher" => $responseApiExtinguisher->data,
+                "attentionPointsLocation" => $responseApiLocation->data,
+                "rootURL" => getenv("ROOT_URL")
+            ]);
     }
 }

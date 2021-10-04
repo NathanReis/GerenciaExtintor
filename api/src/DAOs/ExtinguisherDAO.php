@@ -51,11 +51,11 @@ class ExtinguisherDAO extends DAO
         $amountFields = count($fields);
 
         $sql  = "SELECT ";
-        $sql .=     "fe.*, ";
+        $sql .=     "e.*, ";
         $sql .=     "l.description AS descriptionLocation ";
-        $sql .= "FROM {$this->table} AS fe ";
+        $sql .= "FROM {$this->table} AS e ";
         $sql .=     "INNER JOIN tbLocations AS l ";
-        $sql .=         "ON l.id = fe.idLocation ";
+        $sql .=         "ON l.id = e.idLocation ";
         $sql .= "WHERE 1 = 1";
 
         $params = [];
@@ -65,7 +65,7 @@ class ExtinguisherDAO extends DAO
             $params[":value{$i}"] = $values[$i];
         }
 
-        $sql .= " ORDER BY validate ASC;";
+        $sql .= " ORDER BY e.validate ASC;";
 
         $stmt = DBConnection::getInstance()->prepare($sql);
         $stmt->execute($params);
@@ -120,12 +120,12 @@ class ExtinguisherDAO extends DAO
     public function findFirst(string $field, float|int|string $value): ?Extinguisher
     {
         $sql  = "SELECT ";
-        $sql .=     "fe.*, ";
+        $sql .=     "e.*, ";
         $sql .=     "l.description AS descriptionLocation ";
-        $sql .= "FROM {$this->table} AS fe ";
+        $sql .= "FROM {$this->table} AS e ";
         $sql .=     "INNER JOIN tbLocations AS l ";
-        $sql .=         "ON l.id = fe.idLocation ";
-        $sql .= "WHERE fe.{$field} = :{$field};";
+        $sql .=         "ON l.id = e.idLocation ";
+        $sql .= "WHERE e.{$field} = :{$field};";
 
         $stmt = DBConnection::getInstance()->prepare($sql);
         $stmt->execute([
@@ -139,6 +139,22 @@ class ExtinguisherDAO extends DAO
         }
 
         return ExtinguisherHelper::getFromOwnTable($extinguisher);
+    }
+
+    /**
+     * Busca todos pontos de atenção da tabela específica.
+     *
+     * @return object Os dados dos pontos de atenção.
+     */
+    public function listAttentionPoints(): object
+    {
+        $sql  = "SELECT COUNT(*) AS amountExpired ";
+        $sql .= "FROM {$this->table} ";
+        $sql .= "WHERE validate <= date('NOW');";
+
+        return DBConnection::getInstance()
+            ->query($sql)
+            ->fetch();
     }
 
     /**

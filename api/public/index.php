@@ -69,4 +69,9 @@ $app->group("/extinguishers", function (RouteCollectorProxy $group) {
     $group->put("/{id:\d+}", ExtinguisherController::class . ":update");
 });
 
+$app->group("/attention-points", function (RouteCollectorProxy $group) {
+    $group->get("/location", LocationController::class . ":listAttentionPoints");
+    $group->get("/extinguisher", ExtinguisherController::class . ":listAttentionPoints");
+});
+
 $app->run();

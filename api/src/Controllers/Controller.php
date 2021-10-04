@@ -191,6 +191,26 @@ abstract class Controller
     }
 
     /**
+     * Busca todos pontos de atenção de um modelo específico.
+     *
+     * Faz a busca pelos registros e os converte para array antes de retornar.
+     *
+     * @api
+     *
+     * @param Psr\Http\Message\ServerRequestInterface $request A requisição recebida.
+     * @param Psr\Http\Message\ResponseInterface $response A resposta a ser preenchida.
+     *
+     * @return Psr\Http\Message\ResponseInterface A resposta a ser enviada.
+     */
+    public function listAttentionPoints(IRequest $request, IResponse $response): IResponse
+    {
+        return ResponseHelper::getNewSuccessResponseWithJSON(
+            response: $response,
+            data: $this->dao->listAttentionPoints()
+        );
+    }
+
+    /**
      * Atualiza o registro de um modelo.
      *
      * Pega os dados recebidos pela requisição, preenche um modelo com eles, valida e salva.
