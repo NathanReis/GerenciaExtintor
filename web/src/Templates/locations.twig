@@ -3,6 +3,7 @@
 {% block styles %}
 <link rel="stylesheet" href="{{ rootURL }}/styles/button.css" />
 <link rel="stylesheet" href="{{ rootURL }}/styles/table.css" />
+<link rel="stylesheet" href="{{ rootURL }}/styles/text.css" />
 <link rel="stylesheet" href="{{ rootURL }}/styles/listLocations.css" />
 {% endblock %}
 
@@ -39,9 +40,15 @@
               </a>
             </td>
             <td>
+              {% if location.extinguishers|length == 0 %}
+              <a class="text-danger" href={{ url_for("view-location", { "id" : location.id }) }}>
+                {{ location.extinguishers|length }}
+              </a>
+              {% else %}
               <a href={{ url_for("view-location", { "id" : location.id }) }}>
                 {{ location.extinguishers|length }}
               </a>
+              {% endif %}
             </td>
           </tr>
           {% else %}
