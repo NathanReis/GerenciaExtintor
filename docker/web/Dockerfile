@@ -7,9 +7,6 @@ RUN apt-get update \
     && apt-get install -y git wget \
     && apt-get clean
 
-# Overriding the listening ports
-# COPY ./config/myPorts.conf /etc/apache2/ports.conf
-
 # Override the virtual host
 COPY ./config/myVirtualHost.conf /etc/apache2/sites-available/000-default.conf
 
